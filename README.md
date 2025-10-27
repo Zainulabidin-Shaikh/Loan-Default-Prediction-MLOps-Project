@@ -1,529 +1,301 @@
-# 🏦 Enhanced Loan Default Prediction System
+# 🏦 Loan Default Prediction - End-to-End MLOps Project
 
-**Advanced ML Pipeline with 94.64% ROC-AUC & 88.24% Precision**
+[![CI/CD Pipeline](https://github.com/YOUR_USERNAME/loan-default-mlops/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/YOUR_USERNAME/loan-default-mlops/actions)
+[![Docker Hub](https://img.shields.io/docker/pulls/zainulabidinshaikh/loan-default-app)](https://hub.docker.com/r/zainulabidinshaikh/loan-default-app)
+[![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/downloads/)
 
-A production-ready machine learning system for loan default prediction using MLflow, FastAPI, and advanced feature engineering. This system transforms raw loan application data into intelligent risk assessments with comprehensive business recommendations.
-
-## 🚀 **Key Achievements**
-
-✅ **Exceeds Performance Targets:** 94.64% ROC-AUC (target: >85%), 88.24% Precision (target: >80%)  
-✅ **Advanced Feature Engineering:** 26 total features including 14 derived risk indicators  
-✅ **Production API:** FastAPI with <50ms response time and batch processing  
-✅ **Model Optimization:** Comprehensive hyperparameter tuning across 4 algorithms  
-✅ **Business Intelligence:** Detailed risk assessments and approval recommendations
-
-## 🎯 **System Architecture**
-
-```mermaid
-graph TB
-    A[Loan Application Data] --> B[Feature Engineering Pipeline]
-    B --> C[Enhanced Features 26 total]
-    C --> D[Model Training MLflow]
-    D --> E[Hyperparameter Optimization]
-    E --> F[Best Model: Gradient Boosting]
-    F --> G[FastAPI Production Server]
-    G --> H[Risk Assessment & Recommendations]
-
-    subgraph "ML Models Tested"
-        I[Logistic Regression]
-        J[Random Forest]
-        K[Gradient Boosting ⭐]
-        L[SVM]
-    end
-```
-
-## 📊 **Model Performance**
-
-| Model                 | ROC-AUC    | Precision  | Recall | F1-Score | Status          |
-| --------------------- | ---------- | ---------- | ------ | -------- | --------------- |
-| **Gradient Boosting** | **94.64%** | **88.24%** | 79.31% | 83.56%   | ✅ **Selected** |
-| Random Forest         | 94.35%     | 78.95%     | 83.33% | 81.08%   | ✅ Excellent    |
-| Logistic Regression   | 89.39%     | 68.18%     | 88.89% | 77.27%   | ✅ Good         |
-| SVM                   | 89.16%     | 0.00%      | 0.00%  | 0.00%    | ❌ Poor         |
-
-## 📊 Data Description
-
-**Dataset**: `loan_default_sample.csv` with the following features:
-
-- `loan_id`: Unique loan identifier
-- `age`: Age of the applicant
-- `annual_income`: Annual income of the applicant
-- `employment_length`: Employment duration in years
-- `home_ownership`: Type of home ownership (OWN, RENT, MORTGAGE)
-- `purpose`: Purpose of the loan (debt_consolidation, credit_card, etc.)
-- `loan_amount`: Total loan amount
-- `term_months`: Repayment term in months
-- `interest_rate`: Interest rate for the loan
-- `dti`: Debt-to-income ratio
-- `credit_score`: Applicant's credit score
-- `delinquency_2yrs`: Number of delinquencies in past 2 years
-- `num_open_acc`: Number of open accounts
-- `target_default`: Binary flag (1 = Default, 0 = Non-default)
-
-## 🔧 **Enhanced Feature Engineering**
-
-### **Original Features (12)**
-
-- Basic demographics and loan details
-- Credit score, income, employment history
-- Debt-to-income ratio, delinquencies
-
-### **Derived Features (14)**
-
-- **Financial Ratios:** Income-to-loan, payment-to-income ratios
-- **Risk Scoring:** Employment risk, high interest flags
-- **Behavioral Indicators:** Young borrower, multiple delinquencies
-- **Credit Categories:** Excellent/Good/Fair/Poor classifications
-- **Payment Analysis:** Monthly payment calculations
-
-## 🚀 **Quick Start**
-
-### **🐳 Docker Hub (Recommended)**
-
-```bash
-# Pull and run from Docker Hub
-docker run -d -p 9000:9000 asbhoskar/enhanced-loan-default-prediction:latest
-
-# Test the API
-curl http://localhost:9000/health
-```
-
-### **📋 Local Development Setup**
-
-```bash
-# Clone repository
-git clone https://github.com/asbhosekar/enhanced-loan-default-prediction.git
-cd enhanced-loan-default-prediction
-
-# Create virtual environment
-python -m venv .venv
-.venv\Scripts\activate  # Windows
-# source .venv/bin/activate  # Linux/Mac
-
-# Install dependencies
-pip install -r requirements.txt
-```
-
-### **🎯 Model Training (Optional)**
-
-```bash
-# Basic training
-python train.py --model-type logistic
-
-# Advanced hyperparameter tuning
-python advanced_train.py
-```
-
-### **🚀 API Server**
-
-```bash
-# Option 1: Docker (Recommended)
-docker run -p 9000:9000 asbhoskar/enhanced-loan-default-prediction:latest
-
-# Option 2: Local development
-$env:MODEL_PATH="./exported_model_tuned"  # Windows
-# export MODEL_PATH="./exported_model_tuned"  # Linux/Mac
-python enhanced_api.py
-```
-
-### **🧪 API Testing**
-
-```bash
-# Health check
-curl http://localhost:9000/health
-
-# Test prediction
-curl -X POST "http://localhost:9000/predict" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "age": 35,
-    "annual_income": 80000,
-    "employment_length": 8,
-    "home_ownership": "OWN",
-    "purpose": "home_improvement",
-    "loan_amount": 20000,
-    "term_months": 36,
-    "interest_rate": 8.5,
-    "dti": 15.2,
-    "credit_score": 780,
-    "delinquency_2yrs": 0,
-    "num_open_acc": 4
-  }'
-```
-
-## 🐳 **Docker Hub**
-
-**Image:** [`asbhoskar/enhanced-loan-default-prediction`](https://hub.docker.com/r/asbhoskar/enhanced-loan-default-prediction)
-
-### **Available Tags:**
-
-- `latest` - Most recent stable version
-- `v2.1` - Enhanced features with 94.64% ROC-AUC
-- `v2.0` - Initial production release
-
-### **Quick Commands:**
-
-```bash
-# Pull latest image
-docker pull asbhoskar/enhanced-loan-default-prediction:latest
-
-# Run with Docker Compose
-curl -O https://raw.githubusercontent.com/asbhosekar/enhanced-loan-default-prediction/main/docker-compose.yml
-docker-compose up -d
-```
-
-## 📚 **API Documentation**
-
-### **Endpoints**
-
-| Endpoint         | Method | Description                        |
-| ---------------- | ------ | ---------------------------------- |
-| `/health`        | GET    | System health and model status     |
-| `/model-info`    | GET    | Detailed model performance metrics |
-| `/predict`       | POST   | Single loan application prediction |
-| `/batch-predict` | POST   | Multiple applications processing   |
-
-### **Example Response**
-
-```json
-{
-  "prediction": {
-    "default_probability": 0.0505,
-    "default_probability_percent": "5.05%",
-    "binary_prediction": 0,
-    "prediction_label": "No Default"
-  },
-  "risk_assessment": {
-    "risk_level": "Very Low",
-    "risk_color": "green",
-    "confidence": "High"
-  },
-  "recommendation": {
-    "decision": "Approve",
-    "reasoning": "Based on 5.05% default probability and very low risk level"
-  },
-  "feature_analysis": {
-    "income_to_loan_ratio": 4.0,
-    "monthly_payment": 555.56,
-    "payment_to_income_ratio": 0.0833,
-    "risk_score": 0,
-    "credit_score_category": "Excellent"
-  }
-}
-```
-
-## 🧪 **Testing**
-
-### **Comprehensive Test Suite**
-
-```bash
-# Model validation
-python final_validation.py
-
-# API testing
-python test_enhanced_api.py
-
-# Postman testing
-# See POSTMAN_TESTING_GUIDE.md for detailed instructions
-```
-
-### **Test Coverage**
-
-- ✅ Model accuracy validation
-- ✅ Feature engineering verification
-- ✅ API endpoint testing
-- ✅ Edge case handling
-- ✅ Performance benchmarking
-
-## �📁 **Project Structure**
-
-```
-mlflow_loan_default_pipeline-1/
-├── 📊 Data & Training
-│   ├── loan_default_sample.csv     # Sample dataset
-│   ├── train.py                    # Basic training script
-│   ├── advanced_train.py           # Hyperparameter optimization
-│   └── hyperparameter_search.py    # Search utilities
-├── 🚀 Production API
-│   ├── enhanced_api.py             # Production FastAPI server
-│   └── predict_api/
-│       ├── app.py                  # Basic API
-│       └── Dockerfile              # Container deployment
-├── 🤖 Trained Models
-│   ├── exported_model/             # Basic model artifacts
-│   └── exported_model_tuned/       # Optimized model artifacts
-├── 🧪 Testing & Validation
-│   ├── final_validation.py         # Comprehensive validation
-│   ├── test_enhanced_api.py        # API testing
-│   └── simple_test.py             # Basic model testing
-├── 📚 Documentation
-│   ├── README.md                   # This file
-│   ├── POSTMAN_TESTING_GUIDE.md   # API testing guide
-│   └── EDA_LinearRegression_Detailed.ipynb  # Analysis notebook
-└── ⚙️ Configuration
-    ├── requirements.txt            # Dependencies
-    ├── conda.yaml                 # Conda environment
-    ├── MLproject                  # MLflow configuration
-    └── .gitignore                 # Git ignore rules
-```
-
-## 🎯 **Business Impact**
-
-### **Risk Assessment Categories**
-
-- **Very Low (0-10%):** ✅ Auto-approve with standard terms
-- **Low (10-25%):** ✅ Approve with enhanced monitoring
-- **Medium (25-50%):** ⚠️ Manual review required
-- **High (50-75%):** ❌ Reject or require additional collateral
-- **Very High (75%+):** ❌ Auto-reject
-
-### **Key Business Metrics**
-
-- **False Positive Rate:** 11.76% (minimizes good loan rejections)
-- **False Negative Rate:** 20.69% (controls bad loan approvals)
-- **Expected ROI:** Significant improvement in loan portfolio quality
-- **Processing Speed:** <50ms per application
-
-## 🔄 **MLflow Integration**
-
-### **Experiment Tracking**
-
-- Automated metric logging (ROC-AUC, precision, recall)
-- Model artifact storage and versioning
-- Parameter tracking for reproducibility
-- Performance comparison across runs
-
-### **Model Registry**
-
-- Production model deployment
-- A/B testing capabilities
-- Model rollback functionality
-- Version control and governance
-
-## 🐳 **Deployment Options**
-
-### **🎯 Docker Hub (Production Ready)**
-
-```bash
-# Single container
-docker run -d -p 9000:9000 --name loan-api asbhoskar/enhanced-loan-default-prediction:latest
-
-# With Docker Compose
-docker-compose up -d
-
-# Health check
-curl http://localhost:9000/health
-```
-
-### **☁️ Cloud Deployment**
-
-```bash
-# AWS ECS Fargate (automated)
-./deploy-aws.sh
-
-# Kubernetes
-kubectl apply -f k8s-deployment.yaml
-
-# Manual deployment guide
-# See AWS_DEPLOYMENT_GUIDE.md for detailed instructions
-```
-
-### **💻 Local Development**
-
-```bash
-python enhanced_api.py
-```
-
-## 🛠 **Technology Stack**
-
-| Component               | Technology         | Version |
-| ----------------------- | ------------------ | ------- |
-| **ML Framework**        | scikit-learn       | 1.1+    |
-| **Experiment Tracking** | MLflow             | 2.0+    |
-| **API Framework**       | FastAPI            | 0.100+  |
-| **Data Processing**     | pandas, numpy      | Latest  |
-| **Model Optimization**  | RandomizedSearchCV | -       |
-| **Validation**          | cross-validation   | -       |
-| **Deployment**          | Uvicorn, Docker    | Latest  |
-
-## 📈 **Performance Benchmarks**
-
-| Metric        | Target | Achieved   | Status      |
-| ------------- | ------ | ---------- | ----------- |
-| ROC-AUC       | >85%   | **94.64%** | ✅ Exceeded |
-| Precision     | >80%   | **88.24%** | ✅ Exceeded |
-| Response Time | <100ms | <50ms      | ✅ Exceeded |
-| Accuracy      | >85%   | 91.0%      | ✅ Exceeded |
-
-## 🤝 **Contributing**
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📄 **License**
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙋‍♂️ **Support**
-
-For questions and support:
-
-- 📧 Create an issue in this repository
-- 📚 Review the [POSTMAN_TESTING_GUIDE.md](POSTMAN_TESTING_GUIDE.md) for API testing
-- 🔍 Check the MLflow UI for experiment details
+A production-ready machine learning system for predicting loan defaults with automated training, hyperparameter tuning, REST API, interactive UI, Docker containerization, and CI/CD pipeline.
 
 ---
 
-**Built with ❤️ for intelligent loan decision making**
+## 📋 Table of Contents
 
-- `train.py` - Train Logistic Regression/Random Forest model, log to MLflow, export to `exported_model/`
-- `predict_api/` - FastAPI app and Dockerfile to serve loan default predictions
-- `test_model.py` - Test script for API validation
-- `loan_default_sample.csv` - Loan dataset with borrower information
-- `requirements.txt` - Python dependencies for training
-- `predict_api/requirements.txt` - Dependencies for the API
+- [Project Overview](#-project-overview)
+- [Tech Stack](#-tech-stack)
+- [Project Structure](#-project-structure)
+- [Features](#-features)
+- [Installation & Setup](#-installation--setup)
+- [Usage Guide](#-usage-guide)
+- [API Documentation](#-api-documentation)
+- [Docker Deployment](#-docker-deployment)
+- [CI/CD Pipeline](#-cicd-pipeline)
+- [Model Training](#-model-training)
+- [Future Enhancements](#-future-enhancements)
 
 ---
 
-## 🚀 Quick Start (Local)
+## 🎯 Project Overview
 
-### 1) Create a virtual environment and install dependencies
+This project implements a complete MLOps pipeline for loan default prediction, from data preprocessing and model training to deployment and monitoring. The system uses advanced machine learning algorithms with automated hyperparameter optimization to predict the likelihood of loan defaults.
+
+**Key Achievements:**
+
+- ✅ Trained 5 ML algorithms with Optuna hyperparameter tuning
+- ✅ Built FastAPI REST API for real-time predictions
+- ✅ Created Streamlit web UI for non-technical users
+- ✅ Containerized with Docker for portability
+- ✅ Automated CI/CD pipeline with GitHub Actions
+- ✅ Published Docker image to Docker Hub
+
+---
+
+## 🛠 Tech Stack
+
+### **Machine Learning**
+
+- **scikit-learn** - Classical ML algorithms (Logistic Regression, Random Forest, SVM)
+- **CatBoost** - Gradient boosting for tabular data
+- **LightGBM** - Fast gradient boosting framework
+- **Optuna** - Automated hyperparameter optimization
+- **Pandas & NumPy** - Data manipulation and numerical operations
+
+### **Model Management**
+
+- **MLflow** - Experiment tracking and model registry
+- **Joblib** - Model serialization
+
+### **Backend & API**
+
+- **FastAPI** - High-performance REST API framework
+- **Uvicorn** - ASGI server for production
+- **Pydantic** - Data validation
+
+### **Frontend**
+
+- **Streamlit** - Interactive web UI
+
+### **DevOps & Deployment**
+
+- **Docker** - Containerization
+- **GitHub Actions** - CI/CD automation
+- **Docker Hub** - Container registry
+
+### **Development Tools**
+
+- **Python 3.10** - Programming language
+- **Git** - Version control
+
+---
+
+## 📁 Project Structure
+
+```
+MLOps Project/
+│
+├── .github/
+│   └── workflows/
+│       └── ci-cd.yml                 # GitHub Actions CI/CD pipeline
+│
+├── data/
+│   └── loan_default_sample.csv       # Training dataset
+│
+├── exported_model/
+│   └── best_loan_model/              # Trained MLflow model
+│       ├── MLmodel
+│       ├── conda.yaml
+│       ├── model.pkl
+│       └── python_env.yaml
+│
+├── mlruns/                           # MLflow experiment tracking
+│
+├── predictapi/
+│   └── api.py                        # FastAPI application
+│
+├── ui/
+│   └── streamlit_app.py              # Streamlit web interface
+│
+├── mytrain.py                        # Training script with Optuna
+├── requirements.txt                  # Python dependencies
+├── Dockerfile                        # Docker configuration
+├── .dockerignore                     # Docker ignore rules
+├── .gitignore                        # Git ignore rules
+└── README.md                         # This file
+```
+
+---
+
+## ✨ Features
+
+### **1. Automated ML Pipeline**
+
+- **5 ML Algorithms**: Logistic Regression, Random Forest, SVM, CatBoost, LightGBM
+- **Hyperparameter Tuning**: Optuna-based automated optimization
+- **Feature Engineering**: Automated feature creation and transformation
+- **Model Evaluation**: Comprehensive metrics (Accuracy, Precision, Recall, F1, ROC-AUC)
+
+### **2. REST API**
+
+- **FastAPI Framework**: High-performance async API
+- **Health Checks**: `/health` endpoint for monitoring
+- **Swagger Documentation**: Auto-generated at `/docs`
+- **Input Validation**: Pydantic-based request validation
+
+### **3. Web Interface**
+
+- **Interactive UI**: User-friendly Streamlit application
+- **Real-time Predictions**: Instant results via API integration
+- **Form Validation**: Client-side input validation
+
+### **4. Containerization**
+
+- **Docker Support**: Single-command deployment
+- **Multi-service**: API + UI in one container
+- **Portable**: Runs anywhere Docker is installed
+
+### **5. CI/CD Pipeline**
+
+- **Automated Testing**: Build and health checks
+- **Docker Build**: Automatic image creation
+- **Registry Push**: Auto-publish to Docker Hub
+- **GitHub Actions**: Triggered on every push
+
+---
+
+## 🚀 Installation & Setup
+
+### **Prerequisites**
+
+- Python 3.10+
+- Docker (optional, for containerized deployment)
+- Git
+
+### **Option 1: Local Development Setup**
+
+1. **Clone the repository:**
+
+```bash
+git clone https://github.com/YOUR_USERNAME/loan-default-mlops.git
+cd loan-default-mlops
+```
+
+2. **Create virtual environment:**
 
 ```bash
 python -m venv .venv
-# On Windows:
+
+# Windows
 .venv\Scripts\activate
-# On Linux/Mac:
-source .venv/bin/activate
 
+# macOS/Linux
+source .venv/bin/activate
+```
+
+3. **Install dependencies:**
+
+```bash
 pip install -r requirements.txt
 ```
 
-### 2) Start MLflow tracking server (recommended)
+### **Option 2: Docker Deployment (Recommended)**
+
+**Pull and run the pre-built image:**
 
 ```bash
-mlflow server \
-  --backend-store-uri sqlite:///mlflow.db \
-  --default-artifact-root ./mlruns \
-  --host 0.0.0.0 \
-  --port 5000
+docker pull zainulabidinshaikh/loan-default-app:latest
+docker run -p 9000:9000 -p 8501:8501 zainulabidinshaikh/loan-default-app:latest
 ```
 
-Open MLflow UI at: http://127.0.0.1:5000
-
-### 3) Train the loan default prediction model
-
-Basic training with Logistic Regression:
+**Or build locally:**
 
 ```bash
-python train.py
+docker build -t loan-default-app .
+docker run -p 9000:9000 -p 8501:8501 loan-default-app
 ```
 
-Train with hyperparameter tuning:
+---
+
+## 📖 Usage Guide
+
+### **1. Model Training**
+
+#### **Train All Models (Recommended)**
 
 ```bash
-python train.py --tune --model-type logistic
+python mytrain.py \
+    --data-path ./data/loan_default_sample.csv \
+    --target target_default \
+    --model-type all \
+    --mlflow-tracking-uri http://127.0.0.1:5000
 ```
 
-Train Random Forest with tuning:
+#### **Train Specific Model**
 
 ```bash
-python train.py --model-type random_forest --tune
+# Logistic Regression
+python mytrain.py --data-path ./data/loan_default_sample.csv --target target_default --model-type logistic
+
+# Random Forest
+python mytrain.py --data-path ./data/loan_default_sample.csv --target target_default --model-type rf
+
+# SVM
+python mytrain.py --data-path ./data/loan_default_sample.csv --target target_default --model-type svm
+
+# CatBoost
+python mytrain.py --data-path ./data/loan_default_sample.csv --target target_default --model-type catboost
+
+# LightGBM
+python mytrain.py --data-path ./data/loan_default_sample.csv --target target_default --model-type lightgbm
 ```
 
-### 4) Serve the loan default prediction model
+#### **Training Arguments**
 
-#### Option A — Run the FastAPI app locally
+| Argument                | Type | Default                 | Description                                                            |
+| ----------------------- | ---- | ----------------------- | ---------------------------------------------------------------------- |
+| `--data-path`           | str  | Required                | Path to training CSV file                                              |
+| `--target`              | str  | Required                | Target column name                                                     |
+| `--model-type`          | str  | `all`                   | Model to train: `all`, `logistic`, `rf`, `svm`, `catboost`, `lightgbm` |
+| `--n-iter`              | int  | `10`                    | Number of Optuna optimization iterations                               |
+| `--mlflow-tracking-uri` | str  | `http://127.0.0.1:5000` | MLflow server URL                                                      |
+
+**Output:** Best model saved to `exported_model/best_loan_model/`
+
+---
+
+### **2. Start MLflow UI (Optional)**
 
 ```bash
-# Set environment variable for model path
-set MODEL_PATH=./exported_model
-
-# Install API dependencies
-pip install -r predict_api/requirements.txt
-
-# Start the API server
-uvicorn predict_api.app:app --host 0.0.0.0 --port 9000
+mlflow ui --host 127.0.0.1 --port 5000
 ```
 
-#### Option B — Use Docker
+Access at: http://127.0.0.1:5000
+
+---
+
+### **3. Run FastAPI Server**
 
 ```bash
-# Build the Docker image
-docker build -f predict_api/Dockerfile -t loan-default-api .
-
-# Run the container
-docker run -p 9000:9000 loan-default-api
+uvicorn predictapi.api:app --host 127.0.0.1 --port 9000
 ```
 
-### 5) Test the API
+**Access:**
+
+- API Root: http://127.0.0.1:9000
+- Health Check: http://127.0.0.1:9000/health
+- Swagger Docs: http://127.0.0.1:9000/docs
+
+---
+
+### **4. Run Streamlit UI**
 
 ```bash
-# Test health endpoint
-curl http://localhost:9000/health
-
-# Test prediction endpoint
-curl -X POST "http://localhost:9000/predict" \
-     -H "Content-Type: application/json" \
-     -d '{
-       "age": 32,
-       "annual_income": 60000,
-       "employment_length": 3,
-       "home_ownership": "RENT",
-       "purpose": "credit_card",
-       "loan_amount": 15000,
-       "term_months": 36,
-       "interest_rate": 12.5,
-       "dti": 20.3,
-       "credit_score": 720,
-       "delinquency_2yrs": 0,
-       "num_open_acc": 6
-     }'
+streamlit run ui/streamlit_app.py
 ```
 
-Or run the test script:
+Access at: http://localhost:8501
 
-```bash
-python test_model.py
+---
+
+### **5. Testing with Postman**
+
+**Endpoint:** `POST http://127.0.0.1:9000/predict`
+
+**Headers:**
+
+```
+Content-Type: application/json
 ```
 
-## 📊 Model Evaluation Metrics
-
-The model tracks the following classification metrics:
-
-- **Accuracy**: Overall correctness of predictions
-- **Precision**: True positives / (True positives + False positives)
-- **Recall**: True positives / (True positives + False negatives)
-- **F1-Score**: Harmonic mean of precision and recall
-- **ROC-AUC**: Area under the ROC curve
-
-**Success Criteria**: AUC > 0.85, Precision > 0.8
-
-## 🔌 API Endpoints
-
-### GET /health
-
-Returns model load status and service information.
-
-**Response:**
-
-```json
-{
-  "status": "ok",
-  "model_loaded": true,
-  "model_path": "./exported_model",
-  "service": "Loan Default Prediction API"
-}
-```
-
-### POST /predict
-
-Predicts loan default probability for a single application.
-
-**Request Body:**
+**Body (JSON):**
 
 ```json
 {
@@ -531,7 +303,7 @@ Predicts loan default probability for a single application.
   "annual_income": 60000,
   "employment_length": 3,
   "home_ownership": "RENT",
-  "purpose": "credit_card",
+  "purpose": "creditcard",
   "loan_amount": 15000,
   "term_months": 36,
   "interest_rate": 12.5,
@@ -546,113 +318,282 @@ Predicts loan default probability for a single application.
 
 ```json
 {
-  "default_probability": 0.1234,
-  "binary_prediction": 0,
-  "risk_level": "Low",
-  "recommendation": "Approve"
+  "default_probability": 0.00514,
+  "default_prediction": 0
 }
 ```
 
-            "hire_date": "2015-06-01",
-            "certifications": 2
-        }
-    ]
-
-}
-
-````
-Response:
-```json
-{
-    "predictions": [
-        75211.12961613911
-    ]
-}
-````
-
 ---
 
-## Fine-tuning / Hyperparameter search
+## 📡 API Documentation
 
-There are two example approaches included:
+### **Endpoints**
 
-1. **Grid search inside `train.py`** (use `--tune` with `--alpha ...`): uses `GridSearchCV` and logs the best params & model to MLflow.
+#### **GET /**
 
-2. **Randomized search example**: `python hyperparameter_search.py --data-path sample_input_for_regression.csv --target <TARGET> --n-iter 20`
+Root endpoint - API status
 
-### Tips for larger sweeps
+#### **GET /health**
 
-- Use `RandomizedSearchCV` or `Optuna` for large parameter spaces.
-- Run experiments in parallel (multiple machines or use MLflow to track).
-- Use MLflow's `mlflow.sklearn.autolog()` for auto-logging during quick experiments.
-- Consider saving intermediate artifacts (example predictions, feature importance).
-
----
-
-## Notes & Next steps
-
-- You can configure `MLFLOW_TRACKING_URI` env var or pass `--mlflow-tracking-uri` to `train.py` to point to a remote MLflow server.
-- To register models in MLflow Model Registry, run a tracking server and pass `--register-model <ModelName>` to `train.py`.
-- The exported model is an MLflow-compatible model — it can be served with `mlflow models serve` or loaded using `mlflow.sklearn.load_model`.
-
----
-
-## Docker run
-
-```
-docker build -t ml-predict-api:latest -f predict_api/Dockerfile .
-
-
-docker run --rm -p 9000:9000 `
-  -e MODEL_PATH=/app/exported_model `
-  -e MLFLOW_TRACKING_URI=http://host.docker.internal:5000 `
-  -v "${PWD}\exported_model:/app/exported_model:ro" `
-  --name ml-predict-api ml-predict-api:latest
-
-```
-
-## Run model
-
-```
-http://127.0.0.1:9000/predict
-```
+Health check endpoint
 
 ```json
 {
-  "records": [
-    {
-      "id": 102,
-      "age": 35,
-      "years_experience": 10,
-      "department": "Sales",
-      "education": "Bachelors",
-      "education_level": "Undergraduate",
-      "performance_score": 5.2,
-      "remote_work_pct": 20,
-      "bonus": 5000,
-      "hire_date": "2015-06-01",
-      "certifications": 2
-    }
-  ]
+  "model_loaded": true
 }
 ```
 
-## Output
+#### **POST /predict**
+
+Predict loan default probability
+
+**Request Body:**
+| Field | Type | Description |
+|-------|------|-------------|
+| age | int | Applicant age |
+| annual_income | float | Annual income in dollars |
+| employment_length | int | Years of employment |
+| home_ownership | str | `RENT`, `OWN`, `MORTGAGE`, `OTHER` |
+| purpose | str | Loan purpose (e.g., `creditcard`, `debt_consolidation`) |
+| loan_amount | float | Requested loan amount |
+| term_months | int | Loan term (12, 24, 36, 60) |
+| interest_rate | float | Interest rate percentage |
+| dti | float | Debt-to-income ratio |
+| credit_score | int | Credit score (300-850) |
+| delinquency_2yrs | int | Number of delinquencies in past 2 years |
+| num_open_acc | int | Number of open accounts |
+
+**Response:**
+| Field | Type | Description |
+|-------|------|-------------|
+| default_probability | float | Probability of default (0-1) |
+| default_prediction | int | Binary prediction (0=safe, 1=default) |
+
+---
+
+## 🐳 Docker Deployment
+
+### **Using Pre-built Image**
+
+```bash
+# Pull image
+docker pull zainulabidinshaikh/loan-default-app:latest
+
+# Run container
+docker run -p 9000:9000 -p 8501:8501 zainulabidinshaikh/loan-default-app:latest
+```
+
+### **Building from Source**
+
+```bash
+# Build image
+docker build -t loan-default-app .
+
+# Run container
+docker run -p 9000:9000 -p 8501:8501 loan-default-app
+
+# Run in detached mode
+docker run -d -p 9000:9000 -p 8501:8501 --name ml-app loan-default-app
+```
+
+### **Docker Commands Reference**
+
+```bash
+# List running containers
+docker ps
+
+# Stop container
+docker stop ml-app
+
+# Remove container
+docker rm ml-app
+
+# View logs
+docker logs ml-app
+
+# Execute command in container
+docker exec -it ml-app bash
+```
+
+---
+
+## 🔄 CI/CD Pipeline
+
+### **Automated Workflow**
+
+Every push to `main` branch triggers:
+
+1. ✅ **Build & Test Job**
+
+   - Install Python dependencies
+   - Run linting checks
+   - Build Docker image
+   - Test container health
+
+2. ✅ **Deploy Job** (on success)
+   - Login to Docker Hub
+   - Build production image
+   - Push to Docker Hub with tags:
+     - `latest`
+     - `<commit-sha>`
+
+### **GitHub Actions Setup**
+
+**Required Secrets:**
+
+- `DOCKER_USERNAME`: Docker Hub username
+- `DOCKER_PASSWORD`: Docker Hub access token
+
+**Workflow File:** `.github/workflows/ci-cd.yml`
+
+---
+
+## 🧠 Model Training
+
+### **Algorithms Implemented**
+
+1. **Logistic Regression**
+
+   - Fast, interpretable baseline
+   - L2 regularization
+
+2. **Random Forest**
+
+   - Ensemble of decision trees
+   - Feature importance analysis
+
+3. **Support Vector Machine (SVM)**
+
+   - RBF kernel
+   - Effective for non-linear boundaries
+
+4. **CatBoost**
+
+   - Gradient boosting
+   - Handles categorical features natively
+
+5. **LightGBM**
+   - Fast gradient boosting
+   - Memory efficient
+
+### **Feature Engineering**
+
+Automated feature creation including:
+
+- `income_to_loan_ratio`
+- `monthly_payment`
+- `payment_to_income_ratio`
+- `employment_risk`
+- `young_borrower` / `senior_borrower`
+- `high_credit_score` / `low_credit_score`
+- `risk_score` (composite risk factor)
+- Binned features (income, credit score, loan amount)
+- Interaction features
+
+### **Hyperparameter Optimization**
+
+- **Framework:** Optuna
+- **Iterations:** Configurable (default: 10)
+- **Objective:** Maximize ROC-AUC score
+- **Strategy:** Bayesian optimization
+
+---
+
+## 🔮 Future Enhancements
+
+### **Planned Features**
+
+- [ ] **AWS Deployment**
+
+  - Deploy to AWS ECS/Fargate
+  - Set up Application Load Balancer
+  - Configure auto-scaling
+
+- [ ] **Monitoring & Logging**
+
+  - Prometheus metrics
+  - Grafana dashboards
+  - ELK stack for centralized logging
+
+- [ ] **Model Improvements**
+
+  - SHAP explainability
+  - Model versioning with MLflow registry
+  - A/B testing framework
+  - Drift detection
+
+- [ ] **Enhanced UI**
+
+  - Batch predictions
+  - Historical prediction logs
+  - Model performance visualization
+
+- [ ] **Security**
+  - API authentication (JWT)
+  - Rate limiting
+  - Input sanitization
+
+---
+
+## 👨‍💻 Development
+
+### **Local Development Workflow**
+
+1. Make changes to code
+2. Test locally:
+   ```bash
+   pytest tests/  # (if tests are added)
+   ```
+3. Build and test Docker image:
+   ```bash
+   docker build -t loan-default-app:dev .
+   docker run -p 9000:9000 -p 8501:8501 loan-default-app:dev
+   ```
+4. Commit and push:
+   ```bash
+   git add .
+   git commit -m "Your message"
+   git push origin main
+   ```
+
+### **Environment Variables**
+
+Create `.env` file (not committed to Git):
 
 ```
-{
-    "predictions": [
-        77211.19380808137
-    ]
-}
+MLFLOW_TRACKING_URI=http://127.0.0.1:5000
+MODEL_PATH=exported_model/best_loan_model
 ```
 
-## Model versioning
+---
 
-- Run the model with different input data, experiment_name, parameter or model_type
-- Register this model of new experiment with existing registered model. Version will change automatically
+## 🤝 Contributing
 
-```
-python train.py --data-path sample_input_for_regression.csv --target salary --experiment-name LinearRegression_V2
+Contributions are welcome! Please:
 
-```
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
+
+---
+
+## 📧 Contact
+
+**Zainulabidin Shaikh**
+
+- GitHub: Zainulabidin Shaikh
+- Email: zainulabidinshaikh12@gmail.com
+- Docker Hub: [zainulabidinshaikh](https://hub.docker.com/u/zainulabidinshaikh)
+
+---
+
+## 🙏 Acknowledgments
+
+- MLOps community for best practices
+- FastAPI and Streamlit teams for excellent frameworks
+- Optuna for hyperparameter optimization
+
+---
+
+**⭐ If you found this project helpful, please star it on GitHub!**
