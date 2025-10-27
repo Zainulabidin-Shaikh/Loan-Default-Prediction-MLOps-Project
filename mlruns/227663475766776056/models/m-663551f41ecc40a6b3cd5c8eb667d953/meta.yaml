@@ -1,0 +1,10 @@
+artifact_location: file:///C:/Users/Acer/Desktop/MLOps%20Project/mlruns/227663475766776056/models/m-663551f41ecc40a6b3cd5c8eb667d953/artifacts
+creation_timestamp: 1761566660675
+experiment_id: '227663475766776056'
+last_updated_timestamp: 1761566668492
+model_id: m-663551f41ecc40a6b3cd5c8eb667d953
+model_type: null
+name: svm_model
+source_run_id: 328a3807c8cd4d6b8939bfd402488ea3
+status: 2
+status_message: null

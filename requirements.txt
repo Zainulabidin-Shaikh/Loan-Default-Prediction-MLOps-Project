@@ -1,0 +1,44 @@
+pandas
+numpy
+matplotlib
+seaborn
+scikit-learn
+joblib
+mlflow
+# Core Data Science Libraries
+numpy>=1.24.0
+pandas>=2.0.0
+scikit-learn>=1.3.0
+
+fastapi 
+uvicorn
+streamlit>=1.30.0
+requests>=2.31.0
+
+
+# Machine Learning Models
+catboost>=1.2.0
+lightgbm>=4.0.0
+
+# Hyperparameter Optimization
+optuna>=3.3.0
+
+# Experiment Tracking
+mlflow>=2.8.0
+
+# Utilities
+joblib>=1.3.0
+
+# Optional but Recommended
+matplotlib>=3.7.0
+seaborn>=0.12.0
+plotly>=5.17.0
+
+# For better progress bars
+tqdm>=4.66.0
+
+# Database support for MLflow (optional)
+sqlalchemy>=2.0.0
+
+# For improved performance
+numba>=0.58.0

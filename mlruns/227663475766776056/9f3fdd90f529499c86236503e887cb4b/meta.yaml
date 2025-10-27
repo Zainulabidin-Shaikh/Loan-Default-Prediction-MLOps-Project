@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/Acer/Desktop/MLOps%20Project/mlruns/227663475766776056/9f3fdd90f529499c86236503e887cb4b/artifacts
+end_time: 1761566392313
+entry_point_name: ''
+experiment_id: '227663475766776056'
+lifecycle_stage: active
+run_id: 9f3fdd90f529499c86236503e887cb4b
+run_name: optuna_logistic_20251027_115914
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1761566355162
+status: 3
+tags: []
+user_id: Acer

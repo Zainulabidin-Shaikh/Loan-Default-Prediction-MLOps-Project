@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/Acer/Desktop/MLOps%20Project/mlruns/227663475766776056/7e739519c33247d18b446a1c85f24b97/artifacts
+end_time: 1761565181522
+entry_point_name: ''
+experiment_id: '227663475766776056'
+lifecycle_stage: active
+run_id: 7e739519c33247d18b446a1c85f24b97
+run_name: optuna_random_forest_20251027_113911
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1761565180916
+status: 4
+tags: []
+user_id: Acer

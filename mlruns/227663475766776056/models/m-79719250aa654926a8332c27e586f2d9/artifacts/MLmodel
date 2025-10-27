@@ -1,0 +1,22 @@
+artifact_path: file:///C:/Users/Acer/Desktop/MLOps%20Project/mlruns/227663475766776056/models/m-79719250aa654926a8332c27e586f2d9/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.12.3
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.7.2
+mlflow_version: 3.5.1
+model_id: m-79719250aa654926a8332c27e586f2d9
+model_size_bytes: 725052
+model_uuid: m-79719250aa654926a8332c27e586f2d9
+prompts: null
+run_id: b2087b873b424ebbb088b847c76aa7b2
+utc_time_created: '2025-10-27 12:31:43.112547'

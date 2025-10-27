@@ -1,0 +1,10 @@
+artifact_location: file:///C:/Users/Acer/Desktop/MLOps%20Project/mlruns/227663475766776056/models/m-79719250aa654926a8332c27e586f2d9/artifacts
+creation_timestamp: 1761568302927
+experiment_id: '227663475766776056'
+last_updated_timestamp: 1761568308860
+model_id: m-79719250aa654926a8332c27e586f2d9
+model_type: null
+name: lightgbm_model
+source_run_id: b2087b873b424ebbb088b847c76aa7b2
+status: 2
+status_message: null

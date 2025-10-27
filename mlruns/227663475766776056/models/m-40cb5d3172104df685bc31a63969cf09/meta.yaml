@@ -1,0 +1,10 @@
+artifact_location: file:///C:/Users/Acer/Desktop/MLOps%20Project/mlruns/227663475766776056/models/m-40cb5d3172104df685bc31a63969cf09/artifacts
+creation_timestamp: 1761565995603
+experiment_id: '227663475766776056'
+last_updated_timestamp: 1761566000421
+model_id: m-40cb5d3172104df685bc31a63969cf09
+model_type: null
+name: logistic_model
+source_run_id: f4f8784a12764e0796ee8687b4411b5a
+status: 2
+status_message: null

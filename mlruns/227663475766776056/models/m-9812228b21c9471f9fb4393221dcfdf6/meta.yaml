@@ -1,0 +1,10 @@
+artifact_location: file:///C:/Users/Acer/Desktop/MLOps%20Project/mlruns/227663475766776056/models/m-9812228b21c9471f9fb4393221dcfdf6/artifacts
+creation_timestamp: 1761566627735
+experiment_id: '227663475766776056'
+last_updated_timestamp: 1761566637841
+model_id: m-9812228b21c9471f9fb4393221dcfdf6
+model_type: null
+name: random_forest_model
+source_run_id: 962afcfde2d2477582b387c17ecb73db
+status: 2
+status_message: null
